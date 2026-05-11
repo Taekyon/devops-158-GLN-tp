@@ -35,11 +35,10 @@ pipeline {
         stage('Restart Flask app') {
             steps {
                 script {
-                    sh 'pkill -f "python app.py" || true'
                     sh '''
+                        pkill -f "python app.py" || true
                         cd "${WORKSPACE}"
-                        source venv/bin/activate
-                        nohup python app.py > flask.log 2>&1 &
+                        JENKINS_NODE_COOKIE=dontKillMe nohup ./venv/bin/python app.py > flask.log 2>&1 &
                     '''
                 }
             }

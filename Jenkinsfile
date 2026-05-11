@@ -14,7 +14,7 @@ pipeline {
 
         stage('Pull latest code') {
             steps {
-                dir('/home/lnadmin/devops-158-GLN-tp') {
+                dir("${env.WORKSPACE}") {
                     git branch: 'main', url: 'https://github.com/Taekyon/devops-158-GLN-tp'
                 }
             }
@@ -22,7 +22,7 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                dir('/home/lnadmin/devops-158-GLN-tp') {
+                dir("${env.WORKSPACE}") {
                     sh '''
                         source venv/bin/activate
                         pip install flask
@@ -36,7 +36,7 @@ pipeline {
                 script {
                     sh 'pkill -f "python app.py" || true'
                     sh '''
-                        cd /home/lnadmin/devops-158-GLN-tp
+                        cd "${env.WORKSPACE}"
                         source venv/bin/activate
                         nohup python app.py > flask.log 2>&1 &
                     '''

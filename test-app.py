@@ -1,4 +1,8 @@
-   class TestFlaskApp(unittest.TestCase):
+
+Passer au contenu principal
+Conditions d’achèvement
+
+    class TestFlaskApp(unittest.TestCase):
     
     def setUp(self):
         """Configuration avant chaque test"""
@@ -31,4 +35,4 @@
 
     if __name__ == '__main__':
         unittest.main()
-
+Modifié le: lundi 4 mai 2026, 08:15

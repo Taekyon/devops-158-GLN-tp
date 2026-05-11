@@ -37,13 +37,14 @@ pipeline {
             script {
                 sh 'pkill -f "python app.py" || true'
                 sh '''
-                    cd "${WORKSPACE}"
-                    JENKINS_NODE_COOKIE=dontKillMe nohup ./venv/bin/python app.py > flask.log 2>&1 &
+                        cd "${WORKSPACE}"
+                        . venv/bin/activate
+                        nohup python app.py > flask.log 2>&1 &
                 '''
             }
         }
     }
-
+  
     post {
         success {
             echo 'Déploiement automatique réussi ! BRAVO DAMN'

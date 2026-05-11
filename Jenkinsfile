@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        pollSCM('* * * * *')  // vérifie toutes les minutes
+        pollSCM('* * * * *')
     }
 
     stages {
@@ -24,7 +24,8 @@ pipeline {
             steps {
                 dir("${env.WORKSPACE}") {
                     sh '''
-                        source venv/bin/activate
+                        python3 -m venv venv || true
+                        . venv/bin/activate
                         pip install flask
                     '''
                 }
@@ -36,8 +37,8 @@ pipeline {
                 script {
                     sh 'pkill -f "python app.py" || true'
                     sh '''
-                        cd "${env.WORKSPACE}"
-                        source venv/bin/activate
+                        cd "${WORKSPACE}"
+                        . venv/bin/activate
                         nohup python app.py > flask.log 2>&1 &
                     '''
                 }

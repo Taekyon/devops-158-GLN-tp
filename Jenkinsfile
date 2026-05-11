@@ -38,7 +38,7 @@ pipeline {
                     sh 'pkill -f "python app.py" || true'
                     sh '''
                         cd "${WORKSPACE}"
-                        . venv/bin/activate
+                        source venv/bin/activate
                         nohup python app.py > flask.log 2>&1 &
                     '''
                 }

@@ -8,21 +8,21 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'VOTRE LIEN GIT'
+                git branch: 'main', url: 'https://github.com/Taekyon/devops-158-GLN-tp'
             }
         }
 
         stage('Pull latest code') {
             steps {
-                dir('VOTRE CHEMIN DU DOSSIER DU PROJET') {
-                    git branch: 'main', url: 'VOTRE LIEN GIT'
+                dir('/home/lnadmin/devops-158-GLN-tp') {
+                    git branch: 'main', url: 'https://github.com/Taekyon/devops-158-GLN-tp'
                 }
             }
         }
 
         stage('Install dependencies') {
             steps {
-                dir('VOTRE CHEMIN DU DOSSIER DU PROJET') {
+                dir('/home/lnadmin/devops-158-GLN-tp') {
                     sh '''
                         source venv/bin/activate
                         pip install flask
@@ -36,7 +36,7 @@ pipeline {
                 script {
                     sh 'pkill -f "python app.py" || true'
                     sh '''
-                        cd VOTRE CHEMIN DU DOSSIER DU PROJET
+                        cd /home/lnadmin/devops-158-GLN-tp
                         source venv/bin/activate
                         nohup python app.py > flask.log 2>&1 &
                     '''

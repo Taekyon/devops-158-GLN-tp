@@ -1,5 +1,5 @@
-Passer au contenu principal
-Conditions d’achèvement
+# Passer au contenu principal
+# Conditions d’achèvement
 
     class TestFlaskApp(unittest.TestCase):
     
